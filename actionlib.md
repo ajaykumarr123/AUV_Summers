@@ -1,0 +1,199 @@
+# ACTIONLIB
+  [click here for quick summary](http://wiki.ros.org/actionlib)
+##### Overview
+In any large ROS based system, there are cases when someone would like to send a request to a node to perform some task, and also receive a reply to the request. This can currently be achieved via ROS services.
+In some cases, however, if the service takes a long time to execute, the user might want the ability to cancel the request during execution or get periodic feedback about how the request is progressing. The actionlib package provides tools to create servers that execute long-running goals that can be preempted. It also provides a client interface in order to send requests to the server.
+<br />
+
+![alt text](http://wiki.ros.org/actionlib?action=AttachFile&do=get&target=client_server_interaction.png)
+
+Action and service both provide a functionality .<br />
+only difference between service and action is that when you call a sserivce you have to wait untill the fuctionallity (or whatever task) completes while in the action we can do things while the program is executed.
+
+### Creating the Action Messages
+Before writing an action it is important to define the goal, result, and feedback messages. The action messages are generated automatically from the .action file. This file defines the type and format of the goal, result, and feedback topics for the action. Create actionlib_tutorials/action/Fibonacci.action in your favorite editor, and place the following inside it:
+```c++
+int32 order       //goal definition 
+--- 
+int32[] sequence  //result definition
+ --- 
+int32[] sequence   //feedback
+```
+## Writing a Simple Server
+#### The Code
+First, create actionlib_tutorials/src/fibonacci_server.cpp in your favorite editor, and place the following inside it:
+```c++
+#include <ros/ros.h>
+#include <actionlib/server/simple_action_server.h>
+#include <actionlib_tutorials/FibonacciAction.h>
+
+class FibonacciAction
+{
+protected:
+
+  ros::NodeHandle nh_;
+  actionlib::SimpleActionServer<actionlib_tutorials::FibonacciAction> as_; // NodeHandle instance must be created before this line. Otherwise strange error occurs.
+  std::string action_name_;
+  // create messages that are used to published feedback/result
+  actionlib_tutorials::FibonacciFeedback feedback_;
+  actionlib_tutorials::FibonacciResult result_;
+
+ public:
+
+  FibonacciAction(std::string name) :
+    as_(nh_, name, boost::bind(&FibonacciAction::executeCB, this, _1), false),
+    action_name_(name)
+  {
+    as_.start();
+  }
+
+  ~FibonacciAction(void)
+  {
+  }
+  
+  void executeCB(const actionlib_tutorials::FibonacciGoalConstPtr &goal)
+  {
+    // helper variables
+    ros::Rate r(1);
+    bool success = true;
+
+    // push_back the seeds for the fibonacci sequence
+    feedback_.sequence.clear();
+    feedback_.sequence.push_back(0);
+    feedback_.sequence.push_back(1);
+
+    // publish info to the console for the user
+    ROS_INFO("%s: Executing, creating fibonacci sequence of order %i with seeds %i, %i", action_name_.c_str(), goal->order, feedback_.sequence[0], feedback_.sequence[1]);
+
+    // start executing the action
+    for(int i=1; i<=goal->order; i++)
+    {
+      // check that preempt has not been requested by the client
+      if (as_.isPreemptRequested() || !ros::ok())
+      {
+        ROS_INFO("%s: Preempted", action_name_.c_str());
+        // set the action state to preempted
+        as_.setPreempted();
+        success = false;
+        break;
+      }
+      feedback_.sequence.push_back(feedback_.sequence[i] + feedback_.sequence[i-1]);
+      // publish the feedback
+      as_.publishFeedback(feedback_);
+      // this sleep is not necessary, the sequence is computed at 1 Hz for demonstration purposes
+      r.sleep();
+    }
+
+    if(success)
+    {
+      result_.sequence = feedback_.sequence;
+      ROS_INFO("%s: Succeeded", action_name_.c_str());
+      // set the action state to succeeded
+      as_.setSucceeded(result_);
+    }
+  }
+ };
+
+int main(int argc, char** argv)
+{
+  ros::init(argc, argv, "fibonacci");
+
+  FibonacciAction fibonacci("fibonacci");
+  ros::spin();
+
+  return 0;
+}
+```
+### Running the Action server
+$ roscore
+$ rosrun actionlib_tutorials fibonacci_server 
+
+$ rostopic list -v <br/>
+You will see something similar to:
+```c++
+Published topics:
+ * /fibonacci/feedback [actionlib_tutorials/FibonacciActionFeedback] 1 publisher
+ * /fibonacci/status [actionlib_msgs/GoalStatusArray] 1 publisher
+ * /rosout [rosgraph_msgs/Log] 1 publisher
+ * /fibonacci/result [actionlib_tutorials/FibonacciActionResult] 1 publisher
+ * /rosout_agg [rosgraph_msgs/Log] 1 publisher
+
+Subscribed topics:
+ * /fibonacci/goal [actionlib_tutorials/FibonacciActionGoal] 1 subscriber
+ * /fibonacci/cancel [actionlib_msgs/GoalID] 1 subscriber
+ * /rosout [rosgraph_msgs/Log] 1 subscriber
+```
+
+## Writting a simple client
+### The code
+```c++
+#include <ros/ros.h>
+#include <actionlib/client/simple_action_client.h>
+#include <actionlib/client/terminal_state.h>
+#include <actionlib_tutorials/FibonacciAction.h>
+
+int main (int argc, char **argv)
+{
+  ros::init(argc, argv, "test_fibonacci");
+
+  // create the action client
+  // true causes the client to spin its own thread
+  actionlib::SimpleActionClient<actionlib_tutorials::FibonacciAction> ac("fibonacci", true);
+
+  ROS_INFO("Waiting for action server to start.");
+  // wait for the action server to start
+  ac.waitForServer(); //will wait for infinite time
+
+  ROS_INFO("Action server started, sending goal.");
+  // send a goal to the action
+  actionlib_tutorials::FibonacciGoal goal;
+  goal.order = 20;
+  ac.sendGoal(goal);
+
+  //wait for the action to return
+  bool finished_before_timeout = ac.waitForResult(ros::Duration(30.0));
+
+  if (finished_before_timeout)
+  {
+    actionlib::SimpleClientGoalState state = ac.getState();
+    ROS_INFO("Action finished: %s",state.toString().c_str());
+  }
+  else
+    ROS_INFO("Action did not finish before the time out.");
+
+  //exit
+  return 0;
+}
+```
+### Running the Action client
+$ rosrun actionlib_tutorials fibonacci_client
+
+
+
+$ rostopic list -v
+You will see something similar to:
+```c++
+Published topics:
+ * /fibonacci/goal [actionlib_tutorials/FibonacciActionGoal] 1 publisher
+ * /fibonacci/cancel [actionlib_msgs/GoalID] 1 publisher
+ * /rosout [rosgraph_msgs/Log] 1 publisher
+ * /rosout_agg [rosgraph_msgs/Log] 1 publisher
+
+Subscribed topics:
+ * /fibonacci/feedback [actionlib_tutorials/FibonacciActionFeedback] 1 subscriber
+ * /rosout [rosgraph_msgs/Log] 1 subscriber
+ * /fibonacci/status [actionlib_msgs/GoalStatusArray] 1 subscriber
+ * /fibonacci/result [actionlib_tutorials/FibonacciActionResult] 1 subscriber
+ ```
+## Running an Action Client and Server
+##### Viewing the Action Feedback
+First, same as previous tutorials, run the Action server (C++ | Python) and client (C++ | Python), along with roscore.
+
+In a new terminal, rostopic the feedback channel to see the feedback from the action server:
+
+$ rostopic echo /fibonacci/feedback
+
+##### Viewing the Action Result
+In a new terminal, rostopic the feedback channel to see the feedback from the action server:
+
+$ rostopic echo /fibonacci/result
