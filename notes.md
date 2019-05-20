@@ -21,3 +21,51 @@ erase(int start,int end)  //Removes the elements in the range from start to end 
 In C++, to set them all to -1, you can use something like std::fill_n (from <algorithm>):
 
 std::fill_n(array, 100, -1);
+```c++
+
+ #pragma GCC optimize("Ofast")
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+#define endl '\n'
+
+typedef long long int ll;
+
+ll mod=1e9+7;
+ll mod1=998244351;
+ll power(ll a,ll b)
+{
+    if(b==0) return 1;
+    else if(b%2==0)
+        return power(a*a%mod,b/2)%mod;
+    else return (a%mod*power(a*a%mod,b/2))%mod;
+}
+
+
+ll gcd(ll a, ll b) 
+{ 
+    if (b == 0) 
+        return a; 
+    return gcd(b, a % b);  
+      
+} 
+
+int main()
+{
+
+    IOS
+    //cout<<log2(16777216)<<endl;
+       #ifndef ONLINE_JUDGE
+    // for getting input from input.txt
+    freopen("input.txt", "r", stdin);
+    // for writing output to output.txt
+    freopen("output.txt", "w", stdout);
+#endif
+
+return 0;
+}
+```
