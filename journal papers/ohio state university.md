@@ -1,7 +1,7 @@
 ## RIPtide
   [click here](https://robonation.org/sites/default/files/TheOhioStateUni_2016_RoboSub_Journal.pdf) for best technical paper.
 
-A. Robot Operating System
+#### A. Robot Operating System
 The team has elected to build most of its software using
 Robot Operating System (ROS), a modular framework for
 collaborate robotic software development. The modularity of
@@ -19,8 +19,9 @@ The team has created a number of its own packages to
 operate its AUV. The most significant packages are
 Autonomy, Estimation, Navigation and Vision, as seen in
 Fig 16.
-![alt text](file:///home/ajay/Downloads/Screenshot_2019-05-27%20%EF%80%A0%20-%20TheOhioStateUni_2016_RoboSub_Journal%20pdf.png)
-Fig 16. Software package stack.
+![alt text](https://github.com/ajaykumarr123/ros_sandbox/blob/master/images_doc/Screenshot_2019-05-27%20%EF%80%A0%20-%20TheOhioStateUni_2016_RoboSub_Journal%20pdf.png)
+
+Fig 16. Software package stack.</br>
 The Autonomy package runs the mission by creating a
 sequence of desired states throughout the competition. The
 Estimation package continuously analyzes feedback to
@@ -42,7 +43,7 @@ and vehicle demonstration. The Description package
 provides a vehicle model which can be accessed by other
 software to determine the vehicles properties when making
 dynamic calculations.
-B. Autonomy
+#### B. Autonomy
 The State Machine is the decision-making tool that allows
 the computer to control its behavior autonomously. SMACH
 is a package in ROS that provides these functions to be used
@@ -55,7 +56,7 @@ SimpleActionState, which allows the state machine to access
 nodes through action files. This feature was necessary since
 the state machine manages and operates specific nodes
 accordingly.
-C. Model
+#### C. Model
 The vehicle is modeled using the Universal Robot
 Description Format (URDF) to create a single point of
 control for many of the vehicle’s physical and operating
@@ -85,8 +86,10 @@ completed. It is hoped that this will eventually lead to the
 ability to simulate designs before they are finalized, further
 enhancing the design cycle. The progress of the simulator
 can be seen in Fig 17.
+![alt text](https://github.com/ajaykumarr123/ros_sandbox/blob/master/images_doc/Screenshot_2019-05-27%20%EF%80%A0%20-%20TheOhioStateUni_2016_RoboSub_Journal%20pdf(1).png)
 Fig 17. Image of simulator environment.
-D. Estimation
+
+#### D. Estimation
 The outputs from the two IMUs, mono visual odometry
 from the bottom-facing camera, absolute position estimates
 from the vision system, and depth measurements from the
@@ -191,6 +194,7 @@ Reconfigure [6]. The desired state can also be provided by a
 joystick from the surface in the case of tethered movement
 during the testing phase. This capability allows for easy
 tuning of the PID controllers and stabilization assessment.
+
 Fig 18. PID diagram.
 Ohio State Underwater Robotics Team 9 of 9
 H. Controls
