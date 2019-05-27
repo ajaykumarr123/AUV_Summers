@@ -86,12 +86,12 @@ motor controllers, the NI MyRio, and the Logitech C920
 webcams.
 By using LabVIEW, you can build on top of tested, supported, and maintained libraries of lower level code
 from NI. Choosing C means you’ll need to implement, support, and maintain your own lower level libraries or
-purchase them from a vendor.
+purchase them from a vendor.  </br>
 Syntax-wise, C is optimized for sequential execution of
 instructions as fast as the CPU can handle them. This is
 perfect for pure computation, when only one task is being
-executed and instructions are more basic. The graphical syntax
-in LabVIEW, on the other hand, is optimized for the parallel
+executed and instructions are more basic. *The graphical syntax
+in LabVIEW*, on the other hand, is optimized for the parallel
 execution of tasks that have real-world timing constraints
 The current Sub already have LabVIEW implement.
 
