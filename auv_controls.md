@@ -60,7 +60,7 @@ int main(int argc, char** argv)
             }
  
  
-            kraken_msgs::thrusterData6Thruster msg = getMessage(min(100*distance, 120) );
+            kraken_msgs::thrusterData6Thruster msg = getMessage(min(50*distance, 60) );
 
             pub.publish(msg);
         }
