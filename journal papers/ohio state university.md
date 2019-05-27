@@ -1,20 +1,10 @@
-## RIPtide
+# RIPtide
   [click here](https://robonation.org/sites/default/files/TheOhioStateUni_2016_RoboSub_Journal.pdf) for best technical paper.
 
-#### A. Robot Operating System
-The team has elected to build most of its software using
-Robot Operating System (ROS), a modular framework for
-collaborate robotic software development. The modularity of
-ROS eases efforts to break the software system into
-manageable projects throughout the school year and then
-integrate them into the full system as they are completed. The
-collaborative aspect of ROS encourages many researchers
-and corporations to provide open source modules (called
-packages in ROS) which implement a variety of algorithms
-and device drivers. By taking advantage of this pre-existing
-software, the team saves significant development time and 
-Ohio State Underwater Robotics Team 7 of 9
-gains the ability to learn from the work of experts.
+### A. Robot Operating System
+The team has elected to build most of its software using Robot Operating System (ROS). The modularity of ROS eases efforts to break the software system into manageable projects and then integrate them into the full system as they are completed. The collaborative aspect of ROS encourages many researchers and corporations to provide open source modules (called
+packages in ROS) which implement a variety of algorithms and device drivers. By taking advantage of this pre-existing
+software, the team saves significant development time.
 The team has created a number of its own packages to
 operate its AUV. The most significant packages are
 Autonomy, Estimation, Navigation and Vision, as seen in
@@ -35,16 +25,11 @@ A number of open source packages were used in
 conjunction with those created by the team, such as the
 imu_3dm_gx4 packages [1].
 A number of smaller packages were also created to
-support those listed above. A serial interface package enables
-communication with the team’s custom electronics system
-and, by extension, the remaining sensors and actuators. A
+support those listed above. A
 Teleoperation package was created for initial control testing
-and vehicle demonstration. The Description package
-provides a vehicle model which can be accessed by other
-software to determine the vehicles properties when making
-dynamic calculations.
-#### B. Autonomy
-The State Machine is the decision-making tool that allows
+and vehicle demonstration. 
+### B. Autonomy
+**The State Machine is the decision-making tool that allows
 the computer to control its behavior autonomously. SMACH
 is a package in ROS that provides these functions to be used
 in easier form [2]. In SMACH each state defines the actions
@@ -55,8 +40,9 @@ SMACH that was particularly useful was the
 SimpleActionState, which allows the state machine to access
 nodes through action files. This feature was necessary since
 the state machine manages and operates specific nodes
-accordingly.
-#### C. Model
+accordingly.**
+
+### C. Model
 The vehicle is modeled using the Universal Robot
 Description Format (URDF) to create a single point of
 control for many of the vehicle’s physical and operating
@@ -89,7 +75,7 @@ enhancing the design cycle.
 
 Fig 17. Image of simulator environment.
 
-#### D. Estimation
+### D. Estimation
 The outputs from the two IMUs, mono visual odometry
 from the bottom-facing camera, absolute position estimates
 from the vision system, and depth measurements from the
@@ -100,9 +86,8 @@ positions and velocities of Riptide.
 For consistency between ROS nodes and simplicity in
 setting the desired states of Riptide, the world frame is
 utilized for all calculations. Since several sensors output in 
-Ohio State Underwater Robotics Team 8 of 9
 the body frame, for example the IMUs, transformations are
-necessary. This is completed using the tf package in ROS [4].
+necessary. This is completed using the tf package in ROS .
 #### E. Vision
 The Riptide Vision System revolves around the three
 cameras onboard the vehicle. Two of the three are mounted
@@ -199,7 +184,7 @@ tuning of the PID controllers and stabilization assessment.
 
 Fig 18. PID diagram.
 Ohio State Underwater Robotics Team 9 of 9
-#### H. Controls
+### H. Controls
 The vehicle control stack is comprised of a thrust mapper
 and a thrust calibrator. These components begin with an
 acceleration vector, provided by the navigation stack, and
