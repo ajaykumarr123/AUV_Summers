@@ -1,5 +1,5 @@
 
-### 1.SRM University
+### 1.SRM University([Sedna 2.0](https://robonation.org/sites/default/files/SRMUni_2016_RoboSub_Journal.pdf) )
 
 The Software stack of Sedna is built on top  of the Robot Operating System (ROS) by Willow Garage. **A Mini-ITX on-board computer is provided inside the pressure hull.**  </br>
 The software stack provides the following benefits:  </br>
@@ -21,7 +21,7 @@ All these systems are integrated into the ROS infrastructure in the form of node
 
 
 
-### Team BangaloreRobotics
+### Team BangaloreRobotics([Lassie IV](https://robonation.org/sites/default/files/TeamBangaloreRobotics_2016_RoboSub_Journal.pdf) )
 
 The software used in LASSIE IV starts from image
 processing tool RoboRealm, different modules in this
@@ -30,7 +30,7 @@ provides the Centre of Gravity of the image being
 processed. </br>
 Based on the task, different modules are used for colour and shape detection and coding is done using VB script.The coding in VB Script provides the necessary control signals to the thruster motors and other mechanisms for the tasks to be performed. The control signals of the Roborealm are given as inputs to Arduino mega with a pre-loaded sketch to give the necessary PWM values to run the thrusters.
 
-### San Diego City College
+### San Diego City College([Scarborough](https://robonation.org/sites/default/files/SDCityColl_2016_RoboSub_Journal.pdf) )
 
 During the first major iteration of software development, serial communication devices were
 used as the vehicle's primary data sharing method. A
@@ -56,7 +56,8 @@ system for determining vehicle motion, with
 reactions occurring in response to recognized
 competition course obstacles. 
 
-### Oregon Institute of Technology, OTUS/AUVSI Club
+### Oregon Institute of Technology, OTUS/AUVSI Club ([OTUS](https://robonation.org/sites/default/files/OregonTech_2016_RoboSub_Journal%20%281%29.pdf) )
+
 
 
 MicroStrain Lord 3DM-GX4-45 is an Aperture Heading
@@ -78,37 +79,8 @@ really inexpensive sensor and is connected with Arduino
 Mega via I2C communication. This sensor will be
 incorporated into altimeter sensor in the INS sensor.
 
-### Northwestern Polytechnical University
-The software system of Paxer consists of two-tier
-structures of the host computer (HC) and slave computer
-(SC). The host computer is operation command center of
-the vehicle and responsible for dealing with the
-information that slave computer uploads, judging and
-deciding the actions, then sending instructions to the
-slave computer which will then reassign to the execution
-mechanism including thrusters, grabber and so on to
-accomplish the given task. During the procedure from
-information to the strategy, the information is defined as
-timing, imaging, underwater acoustic, depth and other
-priorities, the vehicle will carry out different tasks
-according to different priorities, until surface eventually.</br>
-The strategy system has many modules,
-which is composed of initialization module, task
-switching module, communication module, image
-processing module, data analyzing module, data log
-module and human-computer interaction module.</br>
-The hardware of SC system mainly consists of the
-controllers, the sensors, the actuators
-##### Vision
-The whole system consists of the camera module, the
-vision model module, the image processing and analysis
-module, data log module, image information feedback
-module.
-Among which, the vision model module achieves the
-coordinate conversion from 3D coordinates in physical
-reality to the 2D camera image plane. 
 
-### Prairie View A&M University
+### Prairie View A&M University([Panther](https://robonation.org/sites/default/files/PrairieViewUni_2016_RoboSub_Journal.pdf) )
 The computer system interfaces using USB connectors with the
 motor controllers, the NI MyRio, and the Logitech C920
 webcams.
