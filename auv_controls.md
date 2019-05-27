@@ -12,7 +12,7 @@ using namespace std;
 
 ros::Publisher pub;
 const float PI = 3.14159265;
-float rate = 5;
+float rate = 10;
 geometry_msgs::Pose current_pose;
 
 kraken_msgs::thrusterData6Thruster getMessage(double linear_x)
@@ -41,7 +41,7 @@ int main(int argc, char** argv)
     ros::Rate loopRate(rate);
 
     double x0;
-    const double tolerance = 0.5;
+    const double tolerance = 0.25;
 
     while (ros::ok())
     {
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
             }
  
  
-            kraken_msgs::thrusterData6Thruster msg = getMessage(min(10*distance, 12.0) );
+            kraken_msgs::thrusterData6Thruster msg = getMessage(min(100*distance, 120) );
 
             pub.publish(msg);
         }
