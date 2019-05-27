@@ -45,26 +45,85 @@ determine the thruster motor values. Response times
 with this method were slow however, due to
 excessive data flow through the microcontroller and
 compounded serial communication times.
-Figure 2: Early Software Development flowchart.
-Hal9000 program now part of Heimdall vision recognition
-program.  </br>
+  </br>
 Due to these issues, several communication
 methods were explored, with the final design
-utilizing I2C communication. This adjustment
+utilizing *I2C communication*. This adjustment
 allowed the Jetson TK-1 board to convey variables to
 the PID system in large messages in under a
 millisecond, improving vehicle response to near real
 time. This configuration utilizes an event-based
 system for determining vehicle motion, with
 reactions occurring in response to recognized
-competition course obstacles. Objects are identified
-and determined in relation to the vehicle via the
-Heimdall Open CV system. This data is then paired
-with information received from the MPU 6050 IMU
-to determine the Scarborough's location in relation to
-it's selected tasks, and actions necessary to complete
-the chosen competition challenges. These
-advancements provide a significant development
-upon last year's dependencies on hard values,
-allowing the team to further develop the vehicle's
-positioning systems in years to come.
+competition course obstacles. 
+
+### Oregon Institute of Technology, OTUS/AUVSI Club
+
+
+MicroStrain Lord 3DM-GX4-45 is an Aperture Heading
+Reference System (AHRS) sensor and used to measure speed
+and angle of the OTUS vehicle for navigation, measuring the
+attitude such as position and linear velocity from three-axis
+accelerometers and angle and angular velocity from three-axis
+gyros. We don’t use magnetometers and GPS in underwater
+circumstances. But we are additionally utilizing a pressure
+sensor (BAR30-SEMSPR-R1) for measuring depth in 2mm
+resolution because of possible drift from inside the pressure
+altimeter sensor.
+hydrophones have to find correct direction and signal. </br>
+Incorporated into above INS sensor, BlueRobotics’s BAR30-
+R1 absolute pressure/altitude sensor (0-30 bar barometer) is
+used to measure the depth with 2mm depth resolution. The
+compact sensor is easily converted to the depth (altitude) and
+really inexpensive sensor and is connected with Arduino
+Mega via I2C communication. This sensor will be
+incorporated into altimeter sensor in the INS sensor.
+
+### Northwestern Polytechnical University
+The software system of Paxer consists of two-tier
+structures of the host computer (HC) and slave computer
+(SC). The host computer is operation command center of
+the vehicle and responsible for dealing with the
+information that slave computer uploads, judging and
+deciding the actions, then sending instructions to the
+slave computer which will then reassign to the execution
+mechanism including thrusters, grabber and so on to
+accomplish the given task. During the procedure from
+information to the strategy, the information is defined as
+timing, imaging, underwater acoustic, depth and other
+priorities, the vehicle will carry out different tasks
+according to different priorities, until surface eventually.</br>
+The strategy system has many modules,
+which is composed of initialization module, task
+switching module, communication module, image
+processing module, data analyzing module, data log
+module and human-computer interaction module.</br>
+The hardware of SC system mainly consists of the
+controllers, the sensors, the actuators
+##### Vision
+The whole system consists of the camera module, the
+vision model module, the image processing and analysis
+module, data log module, image information feedback
+module.
+Among which, the vision model module achieves the
+coordinate conversion from 3D coordinates in physical
+reality to the 2D camera image plane. 
+
+### Prairie View A&M University
+The computer system interfaces using USB connectors with the
+motor controllers, the NI MyRio, and the Logitech C920
+webcams.
+By using LabVIEW, you can build on top of tested, supported, and maintained libraries of lower level code
+from NI. Choosing C means you’ll need to implement, support, and maintain your own lower level libraries or
+purchase them from a vendor.
+Syntax-wise, C is optimized for sequential execution of
+instructions as fast as the CPU can handle them. This is
+perfect for pure computation, when only one task is being
+executed and instructions are more basic. The graphical syntax
+in LabVIEW, on the other hand, is optimized for the parallel
+execution of tasks that have real-world timing constraints
+The current Sub already have LabVIEW implement.
+
+### St. George's School
+nothing useful was found
+
