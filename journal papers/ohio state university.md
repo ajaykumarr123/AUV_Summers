@@ -84,9 +84,9 @@ cycle. This addition would allow the software team to better
 prepare for vehicle testing before construction has been
 completed. It is hoped that this will eventually lead to the
 ability to simulate designs before they are finalized, further
-enhancing the design cycle. The progress of the simulator
-can be seen in Fig 17.
+enhancing the design cycle. 
 ![alt text](https://github.com/ajaykumarr123/ros_sandbox/blob/master/images_doc/Screenshot_2019-05-27%20%EF%80%A0%20-%20TheOhioStateUni_2016_RoboSub_Journal%20pdf(1).png)
+
 Fig 17. Image of simulator environment.
 
 #### D. Estimation
@@ -103,7 +103,7 @@ utilized for all calculations. Since several sensors output in
 Ohio State Underwater Robotics Team 8 of 9
 the body frame, for example the IMUs, transformations are
 necessary. This is completed using the tf package in ROS [4].
-E. Vision
+#### E. Vision
 The Riptide Vision System revolves around the three
 cameras onboard the vehicle. Two of the three are mounted
 in the front side-by-side and provide a depth map via
@@ -158,7 +158,7 @@ image, the complex circle algorithm only runs through a few
 of O(n3), this simplifies the computational task to relatively
 nothing, reducing heat production in the housing, and freeing
 up computer resources for other algorithms.
-F. Acoustics
+#### F. Acoustics
 The acoustics processing software was programmed using
 Code Composer Studio in the language of C++. After
 receiving a signal from the hydrophone array, unwanted
@@ -195,9 +195,11 @@ joystick from the surface in the case of tethered movement
 during the testing phase. This capability allows for easy
 tuning of the PID controllers and stabilization assessment.
 
+![alt text](https://github.com/ajaykumarr123/ros_sandbox/blob/master/images_doc/Screenshot_2019-05-27%20%EF%80%A0%20-%20TheOhioStateUni_2016_RoboSub_Journal%20pdf(2).png)
+
 Fig 18. PID diagram.
 Ohio State Underwater Robotics Team 9 of 9
-H. Controls
+#### H. Controls
 The vehicle control stack is comprised of a thrust mapper
 and a thrust calibrator. These components begin with an
 acceleration vector, provided by the navigation stack, and
