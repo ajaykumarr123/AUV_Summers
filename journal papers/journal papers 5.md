@@ -58,8 +58,6 @@ competition course obstacles.
 
 ### Oregon Institute of Technology, OTUS/AUVSI Club ([OTUS](https://robonation.org/sites/default/files/OregonTech_2016_RoboSub_Journal%20%281%29.pdf) )
 
-
-
 MicroStrain Lord 3DM-GX4-45 is an Aperture Heading
 Reference System (AHRS) sensor and used to measure speed
 and angle of the OTUS vehicle for navigation, measuring the
