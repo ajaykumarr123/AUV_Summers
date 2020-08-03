@@ -1,3 +1,3 @@
 # AUV_Summers
 
-contains documentations
+contains documentations of SMACH,ROS,etc
