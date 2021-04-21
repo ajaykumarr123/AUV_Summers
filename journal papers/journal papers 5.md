@@ -1,5 +1,5 @@
 
-### 1.SRM University([Sedna 2.0](https://robonation.org/sites/default/files/SRMUni_2016_RoboSub_Journal.pdf) )
+### SRM University([Sedna 2.0](https://robonation.org/sites/default/files/SRMUni_2016_RoboSub_Journal.pdf) )
 
 The Software stack of Sedna is built on top  of the Robot Operating System (ROS) by Willow Garage. **A Mini-ITX on-board computer is provided inside the pressure hull.**  </br>
 The software stack provides the following benefits:  </br>
