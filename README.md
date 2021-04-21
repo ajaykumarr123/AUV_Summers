@@ -1,3 +1,2 @@
 # AUV_Summers
-
-contains documentations of SMACH,ROS,Actionlib,etc
+Documentation on SMACH,ROS,Actionlib,etc.
